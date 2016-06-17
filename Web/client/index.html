@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="styles/common.css" type="text/css"/>
+    </head>
+    <body class='wordChecker' ng-app="WordGameChecker" ng-controller="homeCtrl">
+        <h3>Word Game Checker Program</h3>
+        <form class="wd_form">
+            <h4>Input Solution Here:</h4>
+            <input type="text" id="solutionTextbox" class="wd_formText" hint="Put Solution Here" ng-model="solutionWord"/><br/>
+            <input type="button" ng-click="submitSolution()" class="wd_formButton" id="submitSolutionBtn" value="Submit Solution"/>
+            <br/><br/>
+            <h4>Inut Guess Here:</h4>
+            <input type="text" id="guessTextbox" class="wd_formText" hint="Guess Here" ng-model="guessWord"/><br/>
+            <input type="button" ng-click="submitGuess()" class="wd_formButton" id="submitGuessBtn" value="Submit Guess"/>
+            <br/><br/>
+            <h4>Results:</h4>
+            <textarea id="guessesTextarea" contenteditable="false" class="wd_formTextarea"></textarea>
+        </form>
+
+        <div ng-view>
+
+        </div>
+
+    </body>
+
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components\jquery\dist\jquery.min.js"></script>
+    <script src="scripts/application.js"></script>
+</html>

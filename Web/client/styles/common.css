@@ -1,0 +1,23 @@
+html, body {
+    height: 100%;
+}
+
+html {
+    display: table;
+    margin: auto;
+}
+
+body {
+    /*display: table-cell;*/
+    vertical-align: middle;
+}
+
+form.wd_form{
+    vertical-align:middle
+    test-alignment:center
+}
+
+.wd_formTextarea{
+    width:200px:
+    height:500px;
+}
