@@ -2,26 +2,34 @@
 <html>
     <head>
         <link rel="stylesheet" href="styles/common.css" type="text/css"/>
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css"/>
+        <link rel="stylesheet" href="bower_components/sweetalert/dist/sweetalert.min.js" type="text/css"/>
+        <link rel="stylesheet" href="styles/form.css" type="text/css"/>
 
     </head>
     <body class='wordChecker' ng-app="WordGameChecker" ng-controller="wordCheckerCtrl">
-        <h3>Word Game Checker Program</h3>
-        <form class="wd_form">
-            <h3>Input Solution Here:</h3>
-            <p id="wordLengthLabel"></p>
-            <input type="text" id="solutionTextbox" class="wd_formText" hint="Put Solution Here"/><br/>
-            <input type="button" ng-click="submitSolution()" class="wd_formButton" id="submitSolutionBtn" value="Submit Solution"/>
-            <br/><br/>
-            <h3>Input Guess Here:</h3>
-            <input type="text" id="guessTextbox" class="wd_formText" hint="Guess Here" ng-model="guessWord"/><br/>
-            <input type="button" ng-click="submitGuess()" class="wd_formButton" id="submitGuessBtn" value="Submit Guess"/>
-            <br/><br/>
-            <h4>Results:</h4>
-            <span>
-                <textarea id="guessWords" contenteditable="false" class="wd_formTextarea"></textarea>
-                <textarea id="numCorrectTextarea" contenteditable="false" class="wd_formTextarea"></textarea>
-                <textarea id="posCorrectTextarea" contenteditable="false" class="wd_formTextarea"></textarea>
-            </span>
+        <h1><u>Word Game Checker Program</u></h1>
+        <form class="wd_form form-style-5">
+            <div class="guessConsole">
+                <h3>Input Solution Here:</h3>
+                <p id="wordLengthLabel"></p>
+                <input type="text" id="solutionTextbox" class="wd_formText" hint="Put Solution Here"/><br/>
+                <input type="button" ng-click="submitSolution()" class="wd_formButton" id="submitSolutionBtn" value="Submit Solution"/>
+                <br/><br/>
+                <h3>Input Guess Here:</h3>
+                <input type="text" id="guessTextbox" class="wd_formText" hint="Guess Here" ng-model="guessWord"/><br/>
+                <input type="button" ng-click="submitGuess()" class="wd_formButton" id="submitGuessBtn" value="Submit Guess"/>
+            </div>
+            <div class="resultsConsoleWrapper">
+                <div class="resultsConsole">
+                    <h4>Results:</h4>
+                    <span>
+                        <textarea id="guessWords" contenteditable="false" class="wd_formTextarea"></textarea>
+                        <textarea id="numCorrectTextarea" contenteditable="false" class="wd_formTextarea"></textarea>
+                        <textarea id="posCorrectTextarea" contenteditable="false" class="wd_formTextarea"></textarea>
+                    </span>
+                </div>
+            </div>
         </form>
 
         <div ng-view>

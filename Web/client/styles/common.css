@@ -19,9 +19,32 @@ form.wd_form{
 }
 
 textarea{
-    width:100px;
-    height:300px;
+    width:110px;
+    height: 400px;
     padding: 0;
     border: 1px solid #ccc;
     text-align:center;
+}
+
+input[type="text"]{
+    text-align: center;
+}
+
+
+
+div.guessConsole{
+    position: relative;
+    float:left;
+}
+
+div.resultsConsoleWrapper{
+    padding-top: 0px;
+    padding-left: 50px;
+    position: relative;
+    float:left
+    /*display: table-cell;*/
+}
+
+.resultsConsoleWrapper.resultsConsole{
+    display: inline;
 }
