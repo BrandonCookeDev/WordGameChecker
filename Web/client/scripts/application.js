@@ -33,6 +33,8 @@ app.controller('wordCheckerCtrl', function($scope){
             numCorrect: $scope.solutionWord.length,
             posCorrect: $scope.solutionWord.length
         }
+
+        $('#wordLengthLabel').val('Word is ' + $scope.solutionWord.length + ' characters long');
     };
 
     $scope.submitGuess = function(){
@@ -50,10 +52,13 @@ app.controller('wordCheckerCtrl', function($scope){
         $scope.results.posCorrect = $scope.countNumberPositionsCorrect($scope.solutionWord, $scope.guessWord);
 
         var correct = $scope.checkWordIsCorrect($scope.expectedResults, $scope.results);
-        if(correct)
-            return "CORRECT!";
-        else
-            return $scope.results;
+        if(correct){
+            $scope.writeResultsToTextarea($scope.results)
+            alert("CORRECT! " + $$scope.guessWord + " was the word!");
+        }
+        else{
+            $scope.writeResultsToTextarea($scope.results);
+        }
     };
 
     $scope.countNumberCharactersCorrect = function(solution, guess){
@@ -67,7 +72,6 @@ app.controller('wordCheckerCtrl', function($scope){
                 sum++;
             }
        }
-
        return sum;
    };
 
@@ -86,6 +90,24 @@ app.controller('wordCheckerCtrl', function($scope){
             expected.posCorrect === received.posCorrect)
             return true;
         else return false;
+   };
+
+   $scope.writeResultsToTextarea = function(results){
+        var previousWord = $('#guessWords').val();
+        var previousCorrect = $('#numCorrectTextarea').val();
+        var previousPosition = $('#posCorrectTextarea').val();
+
+        var newWord = previousWord + '\n' + results.word;
+        var newCorrect = previousCorrect + '\n' + results.numCorrect;
+        var newPosition = previousPosition + '\n' + results.posCorrect;
+
+        $('#guessWords').val(newWord);
+        $('#numCorrectTextarea').val(newCorrect);
+        $('#posCorrectTextarea').val(newPosition);
+   };
+
+   $scope.resultsToString = function(results){
+        return results.word + "\t" + results.numCorrect + "\t\t" + results.posCorrect;
    };
 });
 

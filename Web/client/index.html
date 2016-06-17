@@ -2,11 +2,13 @@
 <html>
     <head>
         <link rel="stylesheet" href="styles/common.css" type="text/css"/>
+
     </head>
     <body class='wordChecker' ng-app="WordGameChecker" ng-controller="wordCheckerCtrl">
         <h3>Word Game Checker Program</h3>
         <form class="wd_form">
-            <h4>Input Solution Here:</h4>
+            <h3>Input Solution Here:</h3>
+            <h4 id="wordLengthLabel"></h4>
             <input type="text" id="solutionTextbox" class="wd_formText" hint="Put Solution Here"/><br/>
             <input type="button" ng-click="submitSolution()" class="wd_formButton" id="submitSolutionBtn" value="Submit Solution"/>
             <br/><br/>
@@ -15,7 +17,11 @@
             <input type="button" ng-click="submitGuess()" class="wd_formButton" id="submitGuessBtn" value="Submit Guess"/>
             <br/><br/>
             <h4>Results:</h4>
-            <textarea id="guessesTextarea" contenteditable="false" class="wd_formTextarea"></textarea>
+            <span>
+                <textarea id="guessWords" contenteditable="false" class="wd_formTextarea"></textarea>
+                <textarea id="numCorrectTextarea" contenteditable="false" class="wd_formTextarea"></textarea>
+                <textarea id="posCorrectTextarea" contenteditable="false" class="wd_formTextarea"></textarea>
+            </span>
         </form>
 
         <div ng-view>
@@ -27,4 +33,9 @@
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="scripts/application.js"></script>
+    <script>
+        $('#guessWords').val("Word");
+        $('#numCorrectTextarea').val('NumCorrect');
+        $('#posCorrectTextarea').val('PosCorrect');
+    </script>
 </html>
