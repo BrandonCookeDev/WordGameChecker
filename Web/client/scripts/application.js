@@ -10,17 +10,29 @@ app.controller('wordCheckerCtrl', function($scope){
     $scope.guessWord     = "";
     $scope.solutionChars = null;
 
+    $scope.expectedResults = {
+       word: '',
+       numCorrect: 0,
+       posCorrect: 0
+   }
+
     $scope.results = {
-          guessWord: '',
-          numCorrect: 0,
-          posCorrect: 0
-      }
+        word: '',
+        numCorrect: 0,
+        posCorrect: 0
+    }
 
     $scope.submitSolution = function(){
         $scope.solutionWord = $('#solutionTextbox').val().toString().toLowerCase();
         $('#solutionTextbox').val('##########');
         $('#solutionTextbox').attr('disabled', true);
         $scope.solutionChars = getFrequency($scope.solutionWord);
+
+        $scope.expectedResults = {
+            word: $scope.solutionWord,
+            numCorrect: $scope.solutionWord.length,
+            posCorrect: $scope.solutionWord.length
+        }
     };
 
     $scope.submitGuess = function(){
@@ -33,9 +45,15 @@ app.controller('wordCheckerCtrl', function($scope){
             return;
         }
 
-        $scope.results.guessWord = $scope.guessWord;
+        $scope.results.word = $scope.guessWord;
         $scope.results.numCorrect = $scope.countNumberCharactersCorrect($scope.solutionWord, $scope.guessWord);
         $scope.results.posCorrect = $scope.countNumberPositionsCorrect($scope.solutionWord, $scope.guessWord);
+
+        var correct = $scope.checkWordIsCorrect($scope.expectedResults, $scope.results);
+        if(correct)
+            return "CORRECT!";
+        else
+            return $scope.results;
     };
 
     $scope.countNumberCharactersCorrect = function(solution, guess){
@@ -60,7 +78,15 @@ app.controller('wordCheckerCtrl', function($scope){
                 sum++;
         }
         return sum;
-   }
+   };
+
+   $scope.checkWordIsCorrect = function(expected, received){
+        if(expected.word === received.word &&
+            expected.numCorrect === received.numCorrect &&
+            expected.posCorrect === received.posCorrect)
+            return true;
+        else return false;
+   };
 });
 
 
