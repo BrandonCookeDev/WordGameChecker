@@ -1,0 +1,14 @@
+{
+  "name": "word_game_checker_website",
+  "version": "1.0.0",
+  "description": "Quick and dirty site for all to check their word game results on",
+  "main": "server/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Brandon Lee Cooke",
+  "license": "ISC",
+  "dependencies": {
+    "bower": "^1.7.9"
+  }
+}

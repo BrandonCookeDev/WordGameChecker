@@ -1,0 +1,23 @@
+{
+  "name": "word_checker_program_web_client",
+  "version": "0.0.9",
+  "homepage": "https://github.com/BrandonCookeDev/WordGameChecker",
+  "authors": [
+    "Cooke",
+    "Brandon (bc719c) <bc719c@us.att.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.6",
+    "angular": "~1.5.7",
+    "jquery": "~3.0.0"
+  }
+}
