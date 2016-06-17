@@ -10,6 +10,7 @@ html {
 body {
     /*display: table-cell;*/
     vertical-align: middle;
+    text-align:center;
 }
 
 form.wd_form{
@@ -17,7 +18,10 @@ form.wd_form{
     test-alignment:center
 }
 
-.wd_formTextarea{
-    width:200px:
-    height:500px;
+textarea{
+    width:100px;
+    height:300px;
+    padding: 0;
+    border: 1px solid #ccc;
+    text-align:center;
 }
