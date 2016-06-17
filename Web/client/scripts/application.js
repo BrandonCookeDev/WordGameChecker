@@ -17,7 +17,7 @@ app.controller('wordCheckerCtrl', function($scope){
       }
 
     $scope.submitSolution = function(){
-        $scope.solutionWord = $('#solutionTextbox').val();
+        $scope.solutionWord = $('#solutionTextbox').val().toString().toLowerCase();
         $('#solutionTextbox').val('##########');
         $('#solutionTextbox').attr('disabled', true);
         $scope.solutionChars = getFrequency($scope.solutionWord);
@@ -25,7 +25,7 @@ app.controller('wordCheckerCtrl', function($scope){
 
     $scope.submitGuess = function(){
 
-        $scope.guessWord = $('#guessTextbox').val();
+        $scope.guessWord = $('#guessTextbox').val().toString().toLowerCase();
         $('#guessTextbox').val("");
 
         if($scope.guessWord.length != $scope.solutionWord.length){
@@ -35,7 +35,7 @@ app.controller('wordCheckerCtrl', function($scope){
 
         $scope.results.guessWord = $scope.guessWord;
         $scope.results.numCorrect = $scope.countNumberCharactersCorrect($scope.solutionWord, $scope.guessWord);
-        $scope.results.posCorrect = $scope.countPositionsCorrect($scope.solutionWord, $scope.guessWord);
+        $scope.results.posCorrect = $scope.countNumberPositionsCorrect($scope.solutionWord, $scope.guessWord);
     };
 
     $scope.countNumberCharactersCorrect = function(solution, guess){
