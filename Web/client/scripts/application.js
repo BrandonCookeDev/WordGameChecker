@@ -6,35 +6,63 @@ app.controller("testCtrl", function($scope) {
 });
 
 app.controller('wordCheckerCtrl', function($scope){
-    $scope.solutionWord = "";
-    $scope.guessWord    = "";
+    $scope.solutionWord  = "";
+    $scope.guessWord     = "";
+    $scope.solutionChars = null;
+
+    $scope.results = {
+          guessWord: '',
+          numCorrect: 0,
+          posCorrect: 0
+      }
 
     $scope.submitSolution = function(){
         $scope.solutionWord = $('#solutionTextbox').val();
         $('#solutionTextbox').val('##########');
         $('#solutionTextbox').attr('disabled', true);
+        $scope.solutionChars = getFrequency($scope.solutionWord);
     };
 
     $scope.submitGuess = function(){
+
         $scope.guessWord = $('#guessTextbox').val();
         $('#guessTextbox').val("");
 
-        var results = checkWord($scope.solutionWord, $scope.guessWord);
+        if($scope.guessWord.length != $scope.solutionWord.length){
+            alert('Your word is ' + $scope.guessWord.length + ' long. The Number of characters is ' + $scope.solutionWord.length);
+            return;
+        }
+
+        $scope.results.guessWord = $scope.guessWord;
+        $scope.results.numCorrect = $scope.countNumberCharactersCorrect($scope.solutionWord, $scope.guessWord);
+        $scope.results.posCorrect = $scope.countPositionsCorrect($scope.solutionWord, $scope.guessWord);
     };
 
+    $scope.countNumberCharactersCorrect = function(solution, guess){
+       var sum = 0;
+       var characters = getFrequency(solution, guess);
 
+       for(var i = 0; i<guess.length; i++){
+            var c = guess[i];
+            if(characters[c] != null && characters[c] != 0){
+                characters[c]--;
+                sum++;
+            }
+       }
+
+       return sum;
+   };
+
+   $scope.countNumberPositionsCorrect = function(solution, guess){
+        var sum = 0;
+        for(var i = 0; i < solution.length; i++){
+            if(solution[i] === guess[i])
+                sum++;
+        }
+        return sum;
+   }
 });
 
-function checkWord(solution, guess){
-    //Manipulate This
-    var results = {
-        guessWord: '',
-        numCorrect: 0,
-        posCorrect: 0
-    }
-
-    var count = countChars(guess);
-};
 
 function getFrequency(string) {
     var freq = {};
