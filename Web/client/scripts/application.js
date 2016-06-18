@@ -1,4 +1,4 @@
-var app = angular.module("WordGameChecker", []);
+var app = angular.module("WordGameChecker", ['ngRoute']);
 
 app.controller("testCtrl", function($scope) {
     $scope.firstName = "John";
