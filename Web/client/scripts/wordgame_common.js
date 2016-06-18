@@ -1,4 +1,4 @@
-countNumberCharactersCorrect = function(solution, guess){
+function countNumberCharactersCorrect(solution, guess){
    var sum = 0;
    var characters = getFrequency(solution, guess);
 
@@ -12,7 +12,7 @@ countNumberCharactersCorrect = function(solution, guess){
    return sum;
 };
 
-countNumberPositionsCorrect = function(solution, guess){
+function countNumberPositionsCorrect(solution, guess){
     var sum = 0;
     for(var i = 0; i < solution.length; i++){
         if(solution[i] === guess[i])
