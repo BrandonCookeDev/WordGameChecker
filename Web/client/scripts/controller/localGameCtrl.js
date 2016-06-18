@@ -48,7 +48,7 @@ app.controller('localGameCtrl', function($scope){
         var correct = $scope.checkWordIsCorrect($scope.expectedResults, $scope.results);
         if(correct){
             $scope.writeResultsToTextarea($scope.results)
-            alert("CORRECT! " + $$scope.guessWord + " was the word!");
+            alert("CORRECT! " + $scope.guessWord + " was the word!");
         }
         else{
             $scope.writeResultsToTextarea($scope.results);

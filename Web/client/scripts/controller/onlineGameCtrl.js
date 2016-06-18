@@ -132,6 +132,10 @@ app.controller('distGameCtrl', function($scope){
        $('#guessLengthLabel').text($scope.guessNotification);
    });
 
+    $('input:text').change(function(e){
+        $(this).val(encodeURIComponent($(this).val()));
+    });
+
    //SETUP DEFAULTS
    $('#guessWords').val("Word");
    $('#numCorrectTextarea').val('NumCorrect');
