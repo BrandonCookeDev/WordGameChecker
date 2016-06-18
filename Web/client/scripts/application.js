@@ -28,13 +28,12 @@ app.controller('wordCheckerCtrl', function($scope){
         $('#solutionTextbox').attr('disabled', true);
         $scope.solutionChars = getFrequency($scope.solutionWord);
 
+        $('#wordLengthLabel').text('Word is ' + $scope.solutionWord.length + ' characters long');
         $scope.expectedResults = {
             word: $scope.solutionWord,
             numCorrect: $scope.solutionWord.length,
             posCorrect: $scope.solutionWord.length
         }
-
-        $('#wordLengthLabel').val('Word is ' + $scope.solutionWord.length + ' characters long');
     };
 
     $scope.submitGuess = function(){
@@ -109,7 +108,22 @@ app.controller('wordCheckerCtrl', function($scope){
    $scope.resultsToString = function(results){
         return results.word + "\t" + results.numCorrect + "\t\t" + results.posCorrect;
    };
+
+    $scope.checkRepeatingword = function(word){
+        for(var i=0; i<word.length; i++){
+
+        }
+    }
+
+    $('#guessTextbox').change(function(e){
+       $('#guessLengthLabel').text('Your guess: ' + ($scope.guessWord.length));
+   });
+
+   $('#guessTextbox').keyup(function(e){
+       $('#guessLengthLabel').text('Your guess: ' + ($scope.guessWord.length));
+   });
 });
+
 
 
 function getFrequency(string) {
