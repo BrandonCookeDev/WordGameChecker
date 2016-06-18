@@ -19,7 +19,7 @@ form.wd_form{
 }
 
 textarea{
-    width:110px;
+    width:120px;
     height: 400px;
     padding: 0;
     border: 1px solid #ccc;
@@ -43,6 +43,10 @@ div.resultsConsoleWrapper{
     position: relative;
     float:left
     /*display: table-cell;*/
+}
+
+div.ng_view_wrapper{
+    padding-top:50px;
 }
 
 .resultsConsoleWrapper.resultsConsole{

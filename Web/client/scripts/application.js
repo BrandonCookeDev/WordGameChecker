@@ -1,13 +1,33 @@
 var app = angular.module("WordGameChecker", ['ngRoute']);
 
+app.config(['$routeProvider', function($routeProvider){
+    $routeProvider
+            .when('/',
+                {controller: 'HomeCtrl',
+                 templateUrl: 'home.html'
+                })
+            .when('/localGame',
+                {controller: 'localGameCtrl',
+                 templateUrl: 'partials/local.html'
+                })
+            .when('/distGame',
+                {controller:'distGameController',
+                 templateUrl: 'partials/dist.html'
+                })
+            .otherwise({redirectTo:'/'});
+}]);
+
 app.controller("testCtrl", function($scope) {
     $scope.firstName = "John";
     $scope.lastName = "Doe";
 });
 
-app.controller('wordCheckerCtrl', function($scope){
+app.controller('localGameCtrl', function($scope){
     $scope.solutionWord  = "";
     $scope.guessWord     = "";
+    $scope.repeating     = "";
+    $scope.notification  = "";
+    $scope.guessNotification = "";
     $scope.solutionChars = null;
 
     $scope.expectedResults = {
@@ -28,7 +48,7 @@ app.controller('wordCheckerCtrl', function($scope){
         $('#solutionTextbox').attr('disabled', true);
         $scope.solutionChars = getFrequency($scope.solutionWord);
 
-        $('#wordLengthLabel').text('Word is ' + $scope.solutionWord.length + ' characters long');
+        $('#wordLengthLabel').text();
         $scope.expectedResults = {
             word: $scope.solutionWord,
             numCorrect: $scope.solutionWord.length,
@@ -90,14 +110,56 @@ app.controller('wordCheckerCtrl', function($scope){
         for(var i=0; i<word.length; i++){
 
         }
-    }
+    };
+
+    $scope.extendTextareas = function(){
+        var extension = $('#guessWords').attr('height');
+        var step = 10;
+        if($scope.notification)
+            extension += step;
+        if($scope.repeating)
+            extension += step;
+        if($scope.guessNotification)
+            extension += step;
+
+        $('#guessWords').attr('height', extension);
+        $('#numCorrectTextarea').val('height', extension);
+        $('#posCorrectTextarea').val('height', extension);
+    };
+
+    $('#solutionTextbox').keyup(function(e){
+        $scope.notification = 'Word is ' + $(this).val().length + ' characters long. ';
+        $scope.repeating = ""
+
+        if(isNonTraditionalRepeating($(this).val())){
+            $scope.repeating += '\nIs Nontraditional Repeating ';
+            $scope.extendTextareas(450);
+        }
+        else if(isTraditionalRepeating($(this).val()))
+            $scope.repeating += '\nIs Traditional Repeating ';
+
+        if($scope.notification){
+            $('#wordLengthLabel').text($scope.notification);
+        }
+        if($scope.repeating){
+            $('#repeatingLabel').text($scope.repeating);
+
+        }
+    });
 
     $('#guessTextbox').change(function(e){
-       $('#guessLengthLabel').text('Your guess: ' + ($scope.guessWord.length));
+        $scope.guessNotification = 'Your guess: ' + ($scope.guessWord.length);
+       $('#guessLengthLabel').text($scope.guessNotification);
    });
 
    $('#guessTextbox').keyup(function(e){
-       $('#guessLengthLabel').text('Your guess: ' + ($scope.guessWord.length));
+       $scope.guessNotification = 'Your guess: ' + ($scope.guessWord.length);
+       $('#guessLengthLabel').text($scope.guessNotification);
    });
+
+   //SETUP DEFAULTS
+   $('#guessWords').val("Word");
+   $('#numCorrectTextarea').val('NumCorrect');
+   $('#posCorrectTextarea').val('PosCorrect');
 });
 
