@@ -37,7 +37,6 @@ app.controller('wordCheckerCtrl', function($scope){
     };
 
     $scope.submitGuess = function(){
-
         $scope.guessWord = $('#guessTextbox').val().toString().toLowerCase();
         $('#guessTextbox').val("");
 
@@ -47,8 +46,8 @@ app.controller('wordCheckerCtrl', function($scope){
         }
 
         $scope.results.word = $scope.guessWord;
-        $scope.results.numCorrect = $scope.countNumberCharactersCorrect($scope.solutionWord, $scope.guessWord);
-        $scope.results.posCorrect = $scope.countNumberPositionsCorrect($scope.solutionWord, $scope.guessWord);
+        $scope.results.numCorrect = countNumberCharactersCorrect($scope.solutionWord, $scope.guessWord);
+        $scope.results.posCorrect = countNumberPositionsCorrect($scope.solutionWord, $scope.guessWord);
 
         var correct = $scope.checkWordIsCorrect($scope.expectedResults, $scope.results);
         if(correct){
@@ -59,29 +58,6 @@ app.controller('wordCheckerCtrl', function($scope){
             $scope.writeResultsToTextarea($scope.results);
         }
     };
-
-    $scope.countNumberCharactersCorrect = function(solution, guess){
-       var sum = 0;
-       var characters = getFrequency(solution, guess);
-
-       for(var i = 0; i<guess.length; i++){
-            var c = guess[i];
-            if(characters[c] != null && characters[c] != 0){
-                characters[c]--;
-                sum++;
-            }
-       }
-       return sum;
-   };
-
-   $scope.countNumberPositionsCorrect = function(solution, guess){
-        var sum = 0;
-        for(var i = 0; i < solution.length; i++){
-            if(solution[i] === guess[i])
-                sum++;
-        }
-        return sum;
-   };
 
    $scope.checkWordIsCorrect = function(expected, received){
         if(expected.word === received.word &&
@@ -110,6 +86,7 @@ app.controller('wordCheckerCtrl', function($scope){
    };
 
     $scope.checkRepeatingword = function(word){
+        // TODO Implement This
         for(var i=0; i<word.length; i++){
 
         }
@@ -124,18 +101,3 @@ app.controller('wordCheckerCtrl', function($scope){
    });
 });
 
-
-
-function getFrequency(string) {
-    var freq = {};
-    for (var i=0; i<string.length;i++) {
-        var character = string.charAt(i);
-        if (freq[character]) {
-           freq[character]++;
-        } else {
-           freq[character] = 1;
-        }
-    }
-
-    return freq;
-};
