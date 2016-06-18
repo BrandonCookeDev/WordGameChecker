@@ -124,8 +124,6 @@ app.controller('wordCheckerCtrl', function($scope){
    });
 });
 
-
-
 function getFrequency(string) {
     var freq = {};
     for (var i=0; i<string.length;i++) {
@@ -139,3 +137,7 @@ function getFrequency(string) {
 
     return freq;
 };
+
+$('input[type="text"').change(function(){
+    $(this).val(encodeURIComponent($(this).val()));
+});
