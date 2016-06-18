@@ -1,4 +1,4 @@
-var app = angular.module("WordGameChecker", ['ngRoute']);
+var app = angular.module("WordGameChecker", []);
 
 app.controller("testCtrl", function($scope) {
     $scope.firstName = "John";
@@ -101,3 +101,23 @@ app.controller('wordCheckerCtrl', function($scope){
    });
 });
 
+<<<<<<< HEAD
+=======
+function getFrequency(string) {
+    var freq = {};
+    for (var i=0; i<string.length;i++) {
+        var character = string.charAt(i);
+        if (freq[character]) {
+           freq[character]++;
+        } else {
+           freq[character] = 1;
+        }
+    }
+
+    return freq;
+};
+
+$('input[type="text"').change(function(){
+    $(this).val(encodeURIComponent($(this).val()));
+});
+>>>>>>> security
