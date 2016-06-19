@@ -65,6 +65,13 @@ div.ng_view_wrapper{
 }
 
 /* Online CSS */
+.sweet-alert{
+   display: initial;
+   width: auto;
+   height: auto;
+   margin: auto;
+}
+
 .onlineWrapper{
 
 }

@@ -1,4 +1,25 @@
-app.controller('distGameCtrl', function($scope){
+app.controller('distGameCtrl', ['$scope', '$cookies', '$cookieStore',
+    function($scope, $cookies, $cookieStore){
+    // ON LOAD PROMPT USE FOR NAME IF NOT ALREADY IN COOKIES
+    if(!($cookies.get('name'))){
+        $(document).ready(function(){
+            $(function() {
+                $( "#fillInNameDiv" ).dialog({
+                  autoOpen: false,
+                  show: {
+                    effect: "blind",
+                    duration: 1000
+                  },
+                  hide: {
+                    effect: "explode",
+                    duration: 1000
+                  }
+                });
+              });
+        });
+    };
+
+
     // SET THE BODY TO INLINE FORMAT FOR ONLINE GAMES
     $('html').css('display', 'inline');
 
@@ -143,4 +164,4 @@ app.controller('distGameCtrl', function($scope){
    $('#guessWords').val("Word");
    $('#numCorrectTextarea').val('NumCorrect');
    $('#posCorrectTextarea').val('PosCorrect');
-});
+}]);
