@@ -6,11 +6,11 @@ app.config(['$routeProvider', function($routeProvider){
                 })
             .when('/localGame',
                 {controller: 'localGameCtrl',
-                 templateUrl: 'partials/local.html'
+                 templateUrl: 'partials/localGame.html'
                 })
             .when('/distGame',
                 {controller:'distGameCtrl',
-                 templateUrl: 'partials/dist.html'
+                 templateUrl: 'partials/distGame.html'
                 })
             .otherwise({redirectTo:'/'});
 }]);

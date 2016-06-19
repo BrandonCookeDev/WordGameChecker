@@ -1,4 +1,7 @@
 app.controller('localGameCtrl', function($scope){
+    // SET THE BODY FORMAT TO TABLE FOR LOCAL GAMES
+    $('html').css('display', 'table');
+
     $scope.solutionWord      = "";
     $scope.guessWord         = "";
     $scope.repeating         = "";

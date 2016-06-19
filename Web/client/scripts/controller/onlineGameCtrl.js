@@ -1,4 +1,7 @@
 app.controller('distGameCtrl', function($scope){
+    // SET THE BODY TO INLINE FORMAT FOR ONLINE GAMES
+    $('html').css('display', 'inline');
+
     $scope.solutionWord      = "";
     $scope.guessWord         = "";
     $scope.repeating         = "";
