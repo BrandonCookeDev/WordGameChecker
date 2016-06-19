@@ -1,24 +1,41 @@
 app.controller('distGameCtrl', ['$scope', '$cookies', '$cookieStore',
     function($scope, $cookies, $cookieStore){
-    // ON LOAD PROMPT USE FOR NAME IF NOT ALREADY IN COOKIES
-    if(!($cookies.get('name'))){
-        $(document).ready(function(){
-            $(function() {
-                $( "#fillInNameDiv" ).dialog({
-                  autoOpen: false,
-                  show: {
-                    effect: "blind",
-                    duration: 1000
-                  },
-                  hide: {
-                    effect: "explode",
-                    duration: 1000
-                  }
-                });
-              });
-        });
-    };
 
+    $scope.username = "";
+
+    // ON LOAD PROMPT USE FOR NAME IF NOT ALREADY IN COOKIES
+    if(!($cookies.get('username'))){
+        // DISABLE THE FORM
+        $('.wd_formText').each(function(){
+            $(this).attr('readonly', 'true');
+        });
+        $('.wd_formButton').each(function(){
+            $(this).prop('readonly','true');
+        });
+
+        // ENABLE THE USERNAME INPUT
+        $('.wd_usernameText').each(function(){
+            $(this).removeAttribute('readonly');
+        });
+    }
+    else{
+        $scope.username = $cookies.get('username');
+
+        // PUT NAME FROM COOKIES IN USERNAME FIELD
+        $('#usernameField').text($scope.username)
+
+        // ENABLE THE FORM
+        $('.wd_formText').each(function(){
+            $(this).attr('readonly', 'false');
+        });
+        $('.wd_formButton').each(function(){
+            $(this).prop('disabled', 'false');
+        });
+
+        $('.wd_usernameText').each(function(){
+            $(this).addAttribute('readonly');
+        });
+    }
 
     // SET THE BODY TO INLINE FORMAT FOR ONLINE GAMES
     $('html').css('display', 'inline');
@@ -40,6 +57,26 @@ app.controller('distGameCtrl', ['$scope', '$cookies', '$cookieStore',
         word: '',
         numCorrect: 0,
         posCorrect: 0
+    }
+
+    $scope.submitUsername = function(){
+        // PUT NAME IN COOKIES
+        $cookies.put("username", $('usernameField').text());
+
+        // PUT NAME FROM COOKIES IN USERNAME FIELD
+        $('#usernameField').text($cookies.get("username"))
+
+        // ENABLE THE FORM
+        $('.wd_formText').each(function(){
+            $(this).attr('readonly', 'false');
+        });
+        $('.wd_formButton').each(function(){
+            $(this).prop('disabled', 'false');
+        });
+
+        $('.wd_usernameText').each(function(){
+            $(this).addAttribute('readonly');
+        });
     }
 
     $scope.submitSolution = function(){

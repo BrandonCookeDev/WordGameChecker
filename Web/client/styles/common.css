@@ -79,12 +79,13 @@ div.ng_view_wrapper{
 .mainGameOnline{
     float:center;
     position: absolute;
-    padding-left:40%;
+    padding-left:30%;
 }
 
 .participantsContainer{
     float:right;
     position:fixed;
+    width:20%;
     right: 0;
     top: 50px;
 }
