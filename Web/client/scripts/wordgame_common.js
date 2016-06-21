@@ -36,10 +36,24 @@ function getFrequency(string) {
 };
 
 function isNonTraditionalRepeating(word){
-    word = word.toLowerCase()
-    for(var i=1; i<word.length; i++){
-        if(word[i-1] === word[i])
+    var flag = false;
+    word = word.toLowerCase();
+    dictionary = getFrequency(word);
+    var keys = [];
+    for (var key in dictionary) {
+      if (dictionary.hasOwnProperty(key)) {
+        if(dictionary[key] > 2)
             return true;
+        else if(dictionary[key] > 1 && flag){
+            return true;
+        }
+
+        if(dictionary[key] > 1){
+            if(!flag) flag = true;
+        }
+
+
+      }
     }
     return false;
 };
