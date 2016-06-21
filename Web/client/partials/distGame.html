@@ -1,0 +1,32 @@
+<div ng-controller="onlineGameCtrl" class="onlineWrapper">
+    <div class="mainGameOnline">
+        <h1><u>Word Game Program: Distributed</u></h1>
+        <form class="wd_form form-style-5">
+            <div class="guessConsole">
+                <h3>Input Solution Here:</h3>
+                <input type="text" id="solutionTextbox" class="wd_formText" hint="Put Solution Here"/><br/>
+                <input type="button" ng-click="submitSolution()" class="wd_formButton" id="submitSolutionBtn" value="Submit Solution"/>
+                <br/>
+                <p id="wordLengthLabel"></p>
+                <p id="guessLengthLabel"></p>
+                <br/>
+                <h3>Input Guess Here:</h3>
+                <input type="text" id="guessTextbox" class="wd_formText" hint="Guess Here" ng-model="guessWord"/><br/>
+                <input type="button" ng-click="submitGuess()" class="wd_formButton" id="submitGuessBtn" value="Submit Guess"/>
+            </div>
+            <div class="resultsConsoleWrapper">
+                <div class="resultsConsole">
+                    <h4>Results:</h4>
+                    <span>
+                        <textarea id="guessWords" readonly="true" class="wd_formTextarea"></textarea>
+                        <textarea id="numCorrectTextarea" readonly="true" class="wd_formTextarea"></textarea>
+                        <textarea id="posCorrectTextarea" readonly="true" class="wd_formTextarea"></textarea>
+                    </span>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="participantsContainer">
+        <h2>This is where the Participant Console will be</h2>
+    </div>
+</div>

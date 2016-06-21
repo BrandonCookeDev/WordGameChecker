@@ -3,49 +3,54 @@
     <head>
         <link rel="stylesheet" href="styles/common.css" type="text/css"/>
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css"/>
-        <link rel="stylesheet" href="bower_components/sweetalert/dist/sweetalert.min.js" type="text/css"/>
+        <link rel="stylesheet" href="bower_components/sweetalert/dist/sweetalert.css" type="text/css"/>
         <link rel="stylesheet" href="styles/form.css" type="text/css"/>
-
     </head>
-    <body class='wordChecker' ng-app="WordGameChecker" ng-controller="wordCheckerCtrl">
-        <h1><u>Word Game Program</u></h1>
-        <form class="wd_form form-style-5">
-            <div class="guessConsole">
-                <h3>Input Solution Here:</h3>
-                <input type="text" id="solutionTextbox" class="wd_formText" hint="Put Solution Here"/><br/>
-                <input type="button" ng-click="submitSolution()" class="wd_formButton" id="submitSolutionBtn" value="Submit Solution"/>
-                <br/>
-                <p id="wordLengthLabel"></p>
-                <p id="guessLengthLabel"></p>
-                <br/>
-                <h3>Input Guess Here:</h3>
-                <input type="text" id="guessTextbox" class="wd_formText" hint="Guess Here" ng-model="guessWord"/><br/>
-                <input type="button" ng-click="submitGuess()" class="wd_formButton" id="submitGuessBtn" value="Submit Guess"/>
-            </div>
-            <div class="resultsConsoleWrapper">
-                <div class="resultsConsole">
-                    <h4>Results:</h4>
-                    <span>
-                        <textarea id="guessWords" contenteditable="false" class="wd_formTextarea"></textarea>
-                        <textarea id="numCorrectTextarea" contenteditable="false" class="wd_formTextarea"></textarea>
-                        <textarea id="posCorrectTextarea" contenteditable="false" class="wd_formTextarea"></textarea>
-                    </span>
+    <body class='wordChecker' ng-app="WordGameChecker">
+        <!-- BOOTSTRAP NAV -->
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#/">Guess The Word</a>
                 </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="#localGame">Local Game</a>
+                        </li>
+                        <li>
+                            <a href="#distGame">Online Game</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
             </div>
-        </form>
+            <!-- /.container -->
+        </nav>
 
-        <div ng-view>
+        <!-- THIS IS WHERE ANGULAR WILL HOTSWAP OUR PARTIALS IN -->
+        <div class="ng_view_wrapper">
+            <div ng-view>
 
+            </div>
         </div>
-
     </body>
 
     <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-route/angular-route.min.js"></script>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="scripts/wordgame_common.js"></script>
     <script src="scripts/application.js"></script>
-    <script>
-        $('#guessWords').val("Word");
-        $('#numCorrectTextarea').val('NumCorrect');
-        $('#posCorrectTextarea').val('PosCorrect');
-    </script>
+    <script src="scripts/controller/localGameCtrl.js"></script>
+    <script src="scripts/controller/onlineGameCtrl.js"></script>
+    <script src="scripts/routes/routes.js"></script>
 </html>
