@@ -18,10 +18,9 @@
   "dependencies": {
     "bootstrap": "~3.3.6",
     "angular": "~1.5.7",
-    "jquery": "~3.0.0",
     "angular-route": "~1.5.7"
   },
   "resolutions": {
-    "jquery": "~1.11.1"
+    "jquery": "~3.0.0"
   }
 }
